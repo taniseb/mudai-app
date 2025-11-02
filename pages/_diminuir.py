@@ -26,7 +26,7 @@ st.image("Mudai.png", width=360, use_container_width=True)
 st.markdown("<h2>Reduzir a Frequência</h2>", unsafe_allow_html=True)
 
 # VÍDEO MP4 (NÃO IMAGEM!)
-st.video("aumentar.mp4", autoplay=True, muted=True, loop=True)
+st.video("diminuir.mp4", autoplay=True, muted=True, loop=True)
 
 # TEXTO
 st.markdown("""
