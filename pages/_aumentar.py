@@ -25,16 +25,17 @@ st.markdown("""
 st.image("Mudai.png", width=300)
 st.markdown("<h2>Aumentar Frequência</h2>", unsafe_allow_html=True)
 
-st.image("aumentar.jpg", use_container_width=True)
+# VÍDEO MP4 (NÃO IMAGEM!)
+st.video("aumentar.mp4", autoplay=True, muted=True, loop=True)
 
 st.markdown("""
 <div class="sub-pagina">
-<p><strong>Texto:</strong> [seu texto]</p>
-<p><strong>Dinâmica:</strong> [sua dinâmica]</p>
+<p><strong>Texto:</strong> Sua frequência está aumentando. Ideal para atividades de alta energia.</p>
+<p><strong>Dinâmica:</strong> Respire profundamente e visualize sua energia subindo.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# ÁUDIO ESPECÍFICO
+#ÁUDIO (se tiver)
 st.audio("aumentar.ogg", format="audio/ogg")
 
 col1, col2 = st.columns(2)
