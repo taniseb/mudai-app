@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Mudaí - Aumentar", page_icon="arrow_upward", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Mudaí - Diminuir", page_icon="arrow_downward", layout="centered", initial_sidebar_state="collapsed")
 
 
 
