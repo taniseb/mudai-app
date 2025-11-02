@@ -1,7 +1,5 @@
 import streamlit as st
 
-st.set_page_config(page_title="Mudaí - Frequência", page_icon="wave")
-
 
 st.set_page_config(page_title="Mudaí", page_icon="wave", layout="centered", initial_sidebar_state="collapsed")
 
