@@ -35,7 +35,7 @@ st.image("Mudai.png", width=360, use_container_width=True)
 st.video("frequencia.mp4", autoplay=True, muted=True, loop=True)
 #ÁUDIO (se tiver)
 
-st.markdown("<h3>Primeiro, ouça esse áudio para ir entrando no estado...</h3>", unsafe_allow_html=True)
+st.markdown("<h3>Primeiro, ouça esse áudio para ir entrando no estado...(clique no áudio antes de clicar no vídeo acima)</h3>", unsafe_allow_html=True)
 st.audio("audio_inicial.ogg", format="audio/ogg")
 
 st.markdown("<h2>Escolha o que deseja fazer com sua frequência</h2>", unsafe_allow_html=True)
