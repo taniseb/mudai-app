@@ -1,0 +1,9 @@
+# Ignorar arquivos do Flutter, mas MANTER os assets (vídeos)
+mudai_mobile/*
+!mudai_mobile/assets/
+
+# Ignorar lixo de compilação
+.dart_tool/
+build/
+__pycache__/
+.DS_Store

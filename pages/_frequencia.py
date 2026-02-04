@@ -1,48 +1,51 @@
 import streamlit as st
+import base64
 
-st.set_page_config(page_title="Mudaí - Frequência", page_icon="wave")
+st.set_page_config(page_title="Mudaí", page_icon="wave", layout="centered")
 
+# CSS agressivo para centralizar TUDO
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-    * { font-family: 'Montserrat', sans-serif !important; }
-    h1, h2, h3 { font-weight: 600 !important; text-align: center !important; color: #0a2d54 !important; }
-
     .main, .block-container { background-color: #fdf2e0 !important; }
-    section[data-testid="stAppViewContainer"], [data-testid="stDecoration"] { background: #fdf2e0 !important; }
-
-    .freq-btn {
-        background: #ffcaa8 !important;
-        color: #0a2d54 !important;
-        border: 2px solid #77a8af !important;
-        border-radius: 30px !important;
-        height: 80px !important;
-        font-size: 20px !important;
-        font-weight: bold !important;
-        margin: 15px 0 !important;
-        transition: all 0.3s !important;
+    
+    /* Centraliza o container da imagem/link */
+    .logo-box {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 0 auto 30px auto !important;
     }
-    .freq-btn:hover {
-        background: #77a8af !important;
-        color: white !important;
-        transform: translateX(10px) !important;
+    
+    /* Remove margens extras do Streamlit */
+    [data-testid="stVerticalBlock"] > div:first-child {
+        text-align: center !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-st.image("Mudai.png", width=360, use_container_width=True)
-# VÍDEO MP4 (NÃO IMAGEM!)
-st.video("frequencia.mp4", autoplay=True, muted=True, loop=True)
-#ÁUDIO (se tiver)
+def get_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
 
-st.markdown("<h3>Primeiro, ouça esse áudio para ir entrando no estado...</h3>", unsafe_allow_html=True)
-st.audio("audio_inicial.ogg", format="audio/ogg")
+try:
+    img = get_base64("Mudai.png")
+    # Link HTML com classe customizada
+    st.markdown(f'<div class="logo-box"><a href="/" target="_self"><img src="data:image/png;base64,{img}" width="250"></a></div>', unsafe_allow_html=True)
+except:
+    st.error("Logo não encontrada")
 
-st.markdown("<h2>Escolha o que deseja fazer com sua frequência</h2>", unsafe_allow_html=True)
+# Conteúdo da página
+st.video("mudai_mobile/assets/audio_inicial.mp4", autoplay=True, muted=True, loop=True)
+st.markdown("<h3 style='text-align:center;'>Como você quer se sentir?</h3>", unsafe_allow_html=True)
 
-if st.button("Aumentar", key="aum", use_container_width=True):
-    st.switch_page("pages/_aumentar.py")
-if st.button("Manter", key="man", use_container_width=True):
-    st.switch_page("pages/_manter.py")
-if st.button("Diminuir", key="dim", use_container_width=True):
-    st.switch_page("pages/_diminuir.py")
+if st.button("Dar um gás! 🔥", use_container_width=True): st.switch_page("pages/_aumentar.py")
+if st.button("Ficar no centro 🎯", use_container_width=True): st.switch_page("pages/_manter.py")
+if st.button("Desacelerar... 💆", use_container_width=True): st.switch_page("pages/_diminuir.py")
+
+
+st.markdown("""
+<div style="text-align: center; color: #0a2d54; padding: 40px 20px 20px 20px; font-size: 13px; line-height: 1.4;">
+    Projeto para o curso de Master PNL, desenvolvido por Tanisé Brandão e elaborado em Novembro de 2025, por Carolina Nóbrega, Càtia Nyland, Emersonn Adolfato e Tanisé Brandão
+</div>
+""", unsafe_allow_html=True)

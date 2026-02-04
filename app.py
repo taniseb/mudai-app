@@ -1,58 +1,63 @@
 import streamlit as st
+import base64
 
-st.set_page_config(page_title="Mudaí", page_icon="wave", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Mudaí", page_icon="wave", layout="centered")
 
-st.markdown("""
+def get_base64(path):
+    try:
+        with open(path, "rb") as f: return base64.b64encode(f.read()).decode()
+    except: return ""
+
+img_b64 = get_base64("Mudai.png")
+
+# Usando chaves duplas {{ }} para o CSS não quebrar o Python
+st.markdown(f"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-    * { font-family: 'Montserrat', sans-serif !important; }
-    h1, h2, h3 { font-weight: 600 !important; text-align: center !important; color: #0a2d54 !important; }
-
-    .main, .block-container { background-color: #fdf2e0 !important; max-width: 900px !important; margin: 0 auto !important; padding: 2rem !important; }
-    section[data-testid="stAppViewContainer"], [data-testid="stDecoration"] { background: #fdf2e0 !important; }
-
-    .stButton > button {
-        background: linear-gradient(145deg, #77a8af, #6bc0cd) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 30px !important;
-        height: 120px !important;
-        font-size: 22px !important;
-        font-weight: bold !important;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15) !important;
-        transition: all 0.3s !important;
-        margin: 15px 0 !important;
-    }
-    .stButton > button:hover {
-        transform: translateY(-5px) !important;
-        box-shadow: 0 12px 25px rgba(0,0,0,0.2) !important;
-    }
-
-    .texto-explicativo {
-        background-color: #ffcaa8 !important;
-        border-radius: 20px !important;
-        padding: 25px !important;
-        margin: 30px 0 !important;
+    * {{ font-family: 'Montserrat', sans-serif !important; }}
+    .main, .block-container {{ background-color: #fdf2e0 !important; }}
+    
+    .logo-container {{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }}
+    
+    .centered-title {{
         text-align: center !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-    }
-</style>
-""", unsafe_allow_html=True)
+        color: #0a2d54;
+        width: 100%;
+    }}
 
-st.image("Mudai.png", width=300)
-st.markdown("<h2>Escolha seu caminho:</h2>", unsafe_allow_html=True)
+    .stButton > button {{
+        border-radius: 20px;
+        height: 80px !important;
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        background-color: white !important;
+        border: 1px solid #77a8af !important;
+    }}
+
+    .footer {{ 
+        text-align: center; 
+        color: #0a2d54; 
+        padding: 60px 20px 20px 20px; 
+        font-size: 13px; 
+        line-height: 1.4;
+    }}
+</style>
+
+<div class="logo-container">
+    <img src="data:image/png;base64,{img_b64}" width="320">
+</div>
+<h2 class="centered-title">Como você quer se sentir agora?</h2>
+""", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
-    if st.button("Questionário", width="stretch"):
-        st.switch_page("pages/_questionario.py")
+    if st.button("Fazer o Teste 📝", use_container_width=True): st.switch_page("pages/_questionario.py")
 with col2:
-    if st.button("Frequência", width="stretch"):
-        st.switch_page("pages/_frequencia.py")
+    if st.button("Escolher sua mudança ✨", use_container_width=True): st.switch_page("pages/_frequencia.py")
 
-st.markdown("""
-<div class="texto-explicativo">
-<h3>Por que trabalhar a frequência?</h3>
-<p>A sua frequência vibracional define como você se sente. Você pode <strong>aumentar</strong>, <strong>diminuir</strong> ou <strong>manter</strong> sua energia.</p>
-</div>
-""", unsafe_allow_html=True)
+st.markdown('<div class="footer">Projeto para o curso de Master PNL, desenvolvido por Tanisé Brandão e elaborado em Novembro de 2025, por Carolina Nóbrega, Càtia Nyland, Emersonn Adolfato e Tanisé Brandão</div>', unsafe_allow_html=True)

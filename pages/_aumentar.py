@@ -1,47 +1,32 @@
 import streamlit as st
+import base64
 
-st.set_page_config(page_title="Mudaí - Aumentar", page_icon="arrow_upward", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Mudaí - Dar um gás!", page_icon="🔥")
 
-st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-    * { font-family: 'Montserrat', sans-serif !important; }
-    h1, h2, h3 { font-weight: 600 !important; text-align: center !important; color: #0a2d54 !important; }
+def get_base64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
 
-    .main, .block-container { background-color: #fdf2e0 !important; max-width: 900px !important; margin: 0 auto !important; padding: 2rem !important; }
-    section[data-testid="stAppViewContainer"], [data-testid="stDecoration"] { background: #fdf2e0 !important; }
+try:
+    img = get_base64("Mudai.png")
+    st.markdown(f'''
+        <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 20px;">
+            <a href="/" target="_self">
+                <img src="data:image/png;base64,{img}" width="200">
+            </a>
+        </div>
+    ''', unsafe_allow_html=True)
+except:
+    st.error("Logo não encontrada.")
 
-    .sub-pagina {
-        background-color: #ffcaa8 !important;
-        border: 2px solid #77a8af !important;
-        border-radius: 20px !important;
-        padding: 30px !important;
-        margin: 20px 0 !important;
-        text-align: center !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-st.image("Mudai.png", width=300)
-st.markdown("<h2>Aumentar Frequência</h2>", unsafe_allow_html=True)
-
-# VÍDEO MP4 (NÃO IMAGEM!)
-st.video("aumentar.mp4", autoplay=True, muted=True, loop=True)
+st.markdown("<style>.main, .block-container { background-color: #fdf2e0 !important; }</style>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align:center;'>Dar um gás! 🔥</h2>", unsafe_allow_html=True)
+st.video("mudai_mobile/assets/aumentar_.mp4", autoplay=True, muted=True, loop=True)
+st.markdown('<div style="background-color:#e1f5fe; padding:25px; border-radius:15px; border-left:8px solid #0288d1; font-size:20px; color:#0a2d54; margin-bottom: 80px; margin-top: 20px; text-align: center;"><strong>Sua energia está subindo!</strong> Ideal para quando você precisa de foco, ação e movimento.</div>', unsafe_allow_html=True)
+if st.button("Voltar"): st.switch_page("pages/_frequencia.py")
 
 st.markdown("""
-<div class="sub-pagina">
-<p><strong>Texto:</strong> Sua frequência está aumentando. Ideal para atividades de alta energia.</p>
-<p><strong>Dinâmica:</strong> Respire profundamente e visualize sua energia subindo.</p>
+<div style="text-align: center; color: #0a2d54; padding: 40px 20px 20px 20px; font-size: 13px; line-height: 1.4;">
+    Projeto para o curso de Master PNL, desenvolvido por Tanisé Brandão e elaborado em Novembro de 2025, por Carolina Nóbrega, Càtia Nyland, Emersonn Adolfato e Tanisé Brandão
 </div>
 """, unsafe_allow_html=True)
-
-#ÁUDIO (se tiver)
-st.audio("aumentar.ogg", format="audio/ogg")
-
-col1, col2 = st.columns(2)
-with col1:
-    if st.button("Voltar"):
-        st.switch_page("pages/_frequencia.py")
-with col2:
-    if st.button("Início"):
-        st.switch_page("app.py")
